@@ -6,19 +6,36 @@
       </header>
 
       <main class="rounded-md bg-slate-300 w-[500px] p-3">
-        <div class="flex flex-col items-center justify-between gap-1.5">
-	        <label
-		        class="self-start font-bold text-xl"
-		        for="task_name"
+        <div class="flex  gap-10 items-center justify-between gap-1.5">
+	        <div
+		        class="self-start w-full"
 	        >
-		        Task name
-	        </label>
+		        <label
+			        class="font-bold text-xl"
+			        for="task_name"
+		        >
+			        Name
+		        </label>
 
-	        <input
-		        v-model="currentTask.name"
-		        id="task_name"
-		        class="px-2 outline-none w-full bg-transparent border-b-2 border-black"
-	        />
+		        <input
+			        v-model="currentTask.name"
+			        id="task_name"
+			        class="px-2 outline-none w-full bg-transparent border-2 rounded-md border-black mb-4"
+		        />
+
+		        <label
+		          class="font-bold text-xl"
+		          for="task_description"
+		        >
+			        Description
+		        </label>
+
+		        <textarea
+		          v-model="currentTask.description"
+		          id="task_description"
+		          class="px-2 outline-none w-full bg-transparent border-2 rounded-md border-black"
+		        />
+	        </div>
 
           <div>
             <b class="text-3xl">
@@ -26,42 +43,42 @@
 		            :raw-value="currentTask.time"
 	            />
             </b>
-          </div>
 
-          <div class="flex items-center gap-2">
-            <button
-              v-if="currentTask.specific.isPaused"
-              @click="runCurrentTask"
-              class="flex items-center text-4xl rounded-full bg-gray-100 hover:bg-gray-200 transition"
-            >
-              <icon
-	              name="i-material-symbols:play-arrow"
-              />
-            </button>
+	          <div class="mt-2 flex items-center justify-center gap-2">
+		          <button
+			          @click="runCurrentTask"
+			          :disabled="!currentTask.specific.isPaused"
+			          class="disabled:cursor-not-allowed disabled:opacity-25 flex items-center text-3xl rounded-full bg-gray-100 hover:bg-gray-200 transition"
+		          >
+			          <icon
+				          name="i-material-symbols:play-arrow"
+			          />
+		          </button>
 
-            <button
-              v-if="!currentTask.specific.isPaused"
-              @click="pauseCurrentTask"
-              class="flex items-center rounded-full text-4xl bg-gray-100 hover:bg-gray-200 transition"
-            >
-              <icon
-	              name="i-material-symbols:pause"
-              />
-            </button>
+		          <button
+			          @click="pauseCurrentTask"
+			          :disabled="currentTask.specific.isPaused"
+			          class="disabled:cursor-not-allowed disabled:opacity-25 flex items-center rounded-full text-3xl bg-gray-100 hover:bg-gray-200 transition"
+		          >
+			          <icon
+				          name="i-material-symbols:pause"
+			          />
+		          </button>
 
-            <button
-	            v-if="!!currentTask.time || !currentTask.specific.isPaused"
-              @click="finishCurrentTask"
-              class="disabled:cursor-not-allowed text-2xl disabled:bg-opacity-25 flex items-center rounded-full bg-gray-100 hover:bg-gray-200 transition"
-            >
-              <icon
-	              name="i-material-symbols:stop"
-              />
-            </button>
+		          <button
+			          v-if="!!currentTask.time || !currentTask.specific.isPaused"
+			          @click="finishCurrentTask"
+			          class="disabled:cursor-not-allowed disabled:bg-opacity-25 text-3xl  flex items-center rounded-full bg-gray-100 hover:bg-gray-200 transition"
+		          >
+			          <icon
+				          name="i-material-symbols:stop"
+			          />
+		          </button>
+	          </div>
           </div>
         </div>
 
-        <div class="mt-3">
+        <div class="mt-3 max-h-[300px] overflow-y-auto pr-2">
           <div
             v-for="task in finishedTasks"
             :key="task._id"
@@ -69,9 +86,9 @@
           >
             <div class="flex items-center justify-between">
               <div class="flex flex-col">
-                <span>
+                <b class="text-xl">
                   {{ task.name }}
-                </span>
+                </b>
 
                 <span>
                   {{ task.description }}

@@ -6,6 +6,9 @@ export default defineNuxtConfig({
     '@nuxtjs/tailwindcss',
     '@nuxt/icon',
   ],
+  css: [
+    "@/styles/global.sass"
+  ],
   devtools: {
     enabled: import.meta.env.DEV,
     timeline: {
