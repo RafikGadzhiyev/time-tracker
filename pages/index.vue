@@ -1,11 +1,11 @@
 <template>
-  <div class="flex items-center justify-center h-[100vh]">
+  <div class="bg-slate-300 flex items-center justify-center h-[100vh]">
     <div>
       <header class="mb-2">
         <h1 class="font-bold uppercase text-3xl">Tracker app</h1>
       </header>
 
-      <main class="rounded-md bg-slate-300 w-[500px] p-3">
+      <main class="rounded-md bg-white w-[500px] p-3">
         <div class="flex  gap-10 items-center justify-between gap-1.5">
 	        <div
 		        class="self-start w-full"
@@ -20,7 +20,7 @@
 		        <input
 			        v-model="currentTask.name"
 			        id="task_name"
-			        class="px-2 outline-none w-full bg-transparent border-2 rounded-md border-black mb-4"
+			        class="px-2 outline-none w-full bg-transparent border-2 border-primary-300 rounded-md border-black mb-4"
 		        />
 
 		        <label
@@ -33,7 +33,7 @@
 		        <textarea
 		          v-model="currentTask.description"
 		          id="task_description"
-		          class="px-2 outline-none w-full bg-transparent border-2 rounded-md border-black"
+		          class="px-2 outline-none w-full bg-transparent border-2 border-primary-300 rounded-md border-black"
 		        />
 	        </div>
 
@@ -48,7 +48,7 @@
 		          <button
 			          @click="runCurrentTask"
 			          :disabled="!currentTask.specific.isPaused"
-			          class="disabled:cursor-not-allowed disabled:opacity-25 flex items-center text-3xl rounded-full bg-gray-100 hover:bg-gray-200 transition"
+			          class="disabled:cursor-not-allowed disabled:opacity-25 bg-primary-300 hover:bg-primary-500 flex items-center text-3xl rounded-full bg-gray-100 hover:bg-gray-200 transition"
 		          >
 			          <icon
 				          name="i-material-symbols:play-arrow"
@@ -58,7 +58,7 @@
 		          <button
 			          @click="pauseCurrentTask"
 			          :disabled="currentTask.specific.isPaused"
-			          class="disabled:cursor-not-allowed disabled:opacity-25 flex items-center rounded-full text-3xl bg-gray-100 hover:bg-gray-200 transition"
+			          class="disabled:cursor-not-allowed disabled:opacity-25 bg-primary-300  hover:bg-primary-400 flex items-center rounded-full text-3xl bg-gray-100 hover:bg-gray-200 transition"
 		          >
 			          <icon
 				          name="i-material-symbols:pause"
@@ -68,7 +68,7 @@
 		          <button
 			          v-if="!!currentTask.time || !currentTask.specific.isPaused"
 			          @click="finishCurrentTask"
-			          class="disabled:cursor-not-allowed disabled:bg-opacity-25 text-3xl  flex items-center rounded-full bg-gray-100 hover:bg-gray-200 transition"
+			          class="disabled:cursor-not-allowed disabled:bg-opacity-25  hover:bg-primary-400 text-3xl bg-primary-300 flex items-center rounded-full bg-gray-100 transition"
 		          >
 			          <icon
 				          name="i-material-symbols:stop"
@@ -82,7 +82,7 @@
           <div
             v-for="task in finishedTasks"
             :key="task._id"
-            class="odd:bg-slate-400 even:bg-slate-500 first:rounded-t-md last:rounded-b-md text-white p-3 px-2 w-full"
+            class="odd:bg-primary-400 even:bg-primary-600 first:rounded-t-md last:rounded-b-md text-white p-3 px-2 w-full"
           >
             <div class="flex items-center justify-between">
               <div class="flex flex-col">
