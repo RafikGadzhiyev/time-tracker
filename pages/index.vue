@@ -45,35 +45,26 @@
             </b>
 
 	          <div class="mt-2 flex items-center justify-center gap-2">
-		          <button
+		          <Button
 			          @click="runCurrentTask"
 			          :disabled="!currentTask.specific.isPaused"
-			          class="disabled:cursor-not-allowed disabled:opacity-25 bg-primary-300 hover:bg-primary-500 flex items-center text-3xl rounded-full bg-gray-100 hover:bg-gray-200 transition"
-		          >
-			          <icon
-				          name="i-material-symbols:play-arrow"
-			          />
-		          </button>
+		            icon="i-material-symbols:play-arrow"
+		            variant="squared"
+		          />
 
-		          <button
+		          <Button
 			          @click="pauseCurrentTask"
 			          :disabled="currentTask.specific.isPaused"
-			          class="disabled:cursor-not-allowed disabled:opacity-25 bg-primary-300  hover:bg-primary-400 flex items-center rounded-full text-3xl bg-gray-100 hover:bg-gray-200 transition"
-		          >
-			          <icon
-				          name="i-material-symbols:pause"
-			          />
-		          </button>
+			          icon="i-material-symbols:pause"
+			          variant="squared"
+		          />
 
-		          <button
+		          <Button
 			          v-if="!!currentTask.time || !currentTask.specific.isPaused"
 			          @click="finishCurrentTask"
-			          class="disabled:cursor-not-allowed disabled:bg-opacity-25  hover:bg-primary-400 text-3xl bg-primary-300 flex items-center rounded-full bg-gray-100 transition"
-		          >
-			          <icon
-				          name="i-material-symbols:stop"
-			          />
-		          </button>
+			          icon="i-material-symbols:stop"
+			          variant="squared"
+		          />
 	          </div>
           </div>
         </div>
@@ -117,6 +108,7 @@
   } from '#imports'
 
   import TimeView from '@/components/TimeView.vue'
+  import Button from '@/components/ui/Button.vue'
 
   import type {
 		Task,
