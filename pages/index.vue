@@ -104,7 +104,9 @@
 	lang="ts"
 >
   import {
-		reactive
+		reactive,
+
+	  useSeoMeta,
   } from '#imports'
 
   import TimeView from '@/components/TimeView.vue'
@@ -121,6 +123,14 @@
   )
 
   const timerId = ref<null | ReturnType<typeof setTimeout>>(null)
+
+  // Defining some SEO data and head info
+  useSeoMeta(
+	  {
+		  title: 'Tracker app',
+		  description: "Simple tracker app with simply design"
+	  }
+  )
 
   function getNewTask(): Task {
     return {
